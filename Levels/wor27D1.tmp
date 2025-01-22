@@ -332,9 +332,12 @@ script = ExtResource("7_emew3")
 
 [node name="Player" parent="RobotHandler" instance=ExtResource("7_5d4c6")]
 position = Vector2(-191, -25)
+speed = 100.0
 
 [node name="Player2" parent="RobotHandler" instance=ExtResource("7_5d4c6")]
 position = Vector2(-227, -25)
+speed = 100.0
 
 [node name="Player3" parent="RobotHandler" instance=ExtResource("7_5d4c6")]
 position = Vector2(-210, -25)
+speed = 100.0
