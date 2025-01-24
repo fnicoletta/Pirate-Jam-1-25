@@ -16,9 +16,7 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if not _has_robots: return
 	if Input.is_action_just_pressed("activate_weapon") and robots[current_bot].is_usable:
-		robots[current_bot].is_active = false
-		robots[current_bot].ap.play("detonate")
-		robots[current_bot].is_usable = false
+		robots[current_bot].start_explode()
 		robots.remove_at(current_bot)
 		robot_last_index = _get_last_index()
 		if robot_last_index < 0:
@@ -26,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			return
 		if current_bot > robot_last_index:
 			current_bot = 0
-		robots[current_bot].is_active = true
+		robots[current_bot].end_explode()
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			robots[current_bot].is_active = false
