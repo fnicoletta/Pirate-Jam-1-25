@@ -1,0 +1,99 @@
+[gd_scene load_steps=15 format=3 uid="uid://dqlu0j37fbu2w"]
+
+[ext_resource type="Script" path="res://Entities/Scientist/scientist.gd" id="1_a1a0u"]
+[ext_resource type="Texture2D" uid="uid://sx3ejb2sv2tf" path="res://Entities/Scientist/wokstrate_idle.png" id="2_wr1b2"]
+[ext_resource type="Texture2D" uid="uid://csklj037aaow2" path="res://Entities/Scientist/wokstrate_walk.png" id="3_1owb7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbe1c"]
+atlas = ExtResource("2_wr1b2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr7sb"]
+atlas = ExtResource("2_wr1b2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vtac"]
+atlas = ExtResource("2_wr1b2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4wgh"]
+atlas = ExtResource("2_wr1b2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f33uj"]
+atlas = ExtResource("2_wr1b2")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y24jy"]
+atlas = ExtResource("3_1owb7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftma4"]
+atlas = ExtResource("3_1owb7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa52y"]
+atlas = ExtResource("3_1owb7")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ih72"]
+atlas = ExtResource("3_1owb7")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_psj61"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbe1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pr7sb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vtac")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4wgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f33uj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y24jy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftma4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa52y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ih72")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4fvtv"]
+radius = 6.0
+height = 24.0
+
+[node name="Scientist" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_a1a0u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_psj61")
+animation = &"walk"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_4fvtv")
