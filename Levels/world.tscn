@@ -1,9 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://bnwmcfhh71fw1"]
+[gd_scene load_steps=20 format=3 uid="uid://bnwmcfhh71fw1"]
 
 [ext_resource type="Texture2D" uid="uid://blkgkv0xffcf0" path="res://Assets/sprites/tilemap.png" id="1_dc7jo"]
 [ext_resource type="Script" path="res://Levels/camera_2d.gd" id="3_3vqwb"]
-[ext_resource type="Texture2D" uid="uid://c2ujpiri8vsbt" path="res://Entities/Beaker/green_beaker.png" id="3_wbvjr"]
 [ext_resource type="Texture2D" uid="uid://clo4i15bfvnac" path="res://Entities/Floating_Goo/floating_goo.png" id="6_1pbhk"]
+[ext_resource type="PackedScene" uid="uid://bx23q8i4ot5lf" path="res://Entities/GreenGoo/green_goo.tscn" id="6_t5iar"]
 [ext_resource type="PackedScene" uid="uid://ca4gj2l7w7y5q" path="res://Entities/Player/player.tscn" id="7_5d4c6"]
 [ext_resource type="Script" path="res://Entities/Player/robot_handler.gd" id="7_emew3"]
 
@@ -130,53 +130,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_245o5"]
-atlas = ExtResource("3_wbvjr")
-region = Rect2(16, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hvfy0"]
-atlas = ExtResource("3_wbvjr")
-region = Rect2(48, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qitcm"]
-atlas = ExtResource("3_wbvjr")
-region = Rect2(96, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vt7y"]
-atlas = ExtResource("3_wbvjr")
-region = Rect2(112, 0, 16, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w7usd"]
-atlas = ExtResource("3_wbvjr")
-region = Rect2(128, 0, 16, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_y5saa"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_245o5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hvfy0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qitcm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6vt7y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w7usd")
-}],
-"loop": true,
-"name": &"default",
-"speed": 3.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0gqs2"]
-radius = 6.0
-height = 18.0
-
 [node name="World" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -225,17 +178,5 @@ camera = NodePath("../../Camera2D")
 
 [node name="Destructable" type="Node" parent="."]
 
-[node name="Beaker" type="Area2D" parent="Destructable"]
-position = Vector2(-138, -46)
-collision_layer = 4
-collision_mask = 0
-monitoring = false
-
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Destructable/Beaker"]
-sprite_frames = SubResource("SpriteFrames_y5saa")
-autoplay = "default"
-frame_progress = 0.111481
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Destructable/Beaker"]
-position = Vector2(0, 9)
-shape = SubResource("CapsuleShape2D_0gqs2")
+[node name="GreenGoo" parent="Destructable" instance=ExtResource("6_t5iar")]
+position = Vector2(-148, -46)
