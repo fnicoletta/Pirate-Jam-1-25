@@ -1,6 +1,27 @@
-[gd_scene load_steps=9 format=3 uid="uid://bx23q8i4ot5lf"]
+[gd_scene load_steps=25 format=3 uid="uid://bx23q8i4ot5lf"]
 
 [ext_resource type="Texture2D" uid="uid://c2ujpiri8vsbt" path="res://Entities/Beaker/green_beaker.png" id="1_adc1d"]
+[ext_resource type="Texture2D" uid="uid://cvwp1m4kgquqy" path="res://Entities/Beaker/potions.png" id="1_va30p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m13er"]
+atlas = ExtResource("1_va30p")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv7ww"]
+atlas = ExtResource("1_va30p")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ahbi"]
+atlas = ExtResource("1_va30p")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfluu"]
+atlas = ExtResource("1_va30p")
+region = Rect2(96, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3jbi"]
+atlas = ExtResource("1_va30p")
+region = Rect2(112, 32, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_245o5"]
 atlas = ExtResource("1_adc1d")
@@ -22,8 +43,68 @@ region = Rect2(112, 0, 16, 32)
 atlas = ExtResource("1_adc1d")
 region = Rect2(128, 0, 16, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsf2w"]
+atlas = ExtResource("1_va30p")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oorvo"]
+atlas = ExtResource("1_va30p")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqm5t"]
+atlas = ExtResource("1_va30p")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i34kl"]
+atlas = ExtResource("1_va30p")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhvwx"]
+atlas = ExtResource("1_va30p")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tts5u"]
+atlas = ExtResource("1_va30p")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_euu8j"]
+atlas = ExtResource("1_va30p")
+region = Rect2(32, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7p8nf"]
+atlas = ExtResource("1_va30p")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7rdt"]
+atlas = ExtResource("1_va30p")
+region = Rect2(96, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8oxm"]
+atlas = ExtResource("1_va30p")
+region = Rect2(112, 64, 16, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_y5saa"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m13er")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv7ww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ahbi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfluu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3jbi")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 3.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_245o5")
@@ -41,7 +122,47 @@ animations = [{
 "texture": SubResource("AtlasTexture_w7usd")
 }],
 "loop": true,
-"name": &"default",
+"name": &"green",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsf2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oorvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqm5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i34kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhvwx")
+}],
+"loop": true,
+"name": &"purple",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tts5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_euu8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7p8nf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7rdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8oxm")
+}],
+"loop": true,
+"name": &"red",
 "speed": 3.0
 }]
 
@@ -49,7 +170,7 @@ animations = [{
 radius = 6.0
 height = 18.0
 
-[node name="GreenGoo" type="Area2D"]
+[node name="Goo" type="Area2D"]
 position = Vector2(0, -18)
 collision_layer = 4
 collision_mask = 0
@@ -57,8 +178,8 @@ monitoring = false
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y5saa")
-autoplay = "default"
-frame_progress = 0.111481
+animation = &"blue"
+autoplay = "blue"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9)
