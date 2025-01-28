@@ -18,7 +18,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# Handle weapon activation
 	if Input.is_action_just_pressed("activate_weapon") and robots[current_bot].is_usable:
-		print(robots[current_bot].is_usable)
 		robots[current_bot].start_explode()
 
 	# Handle mouse wheel input for switching robots

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bnwmcfhh71fw1"]
+[gd_scene load_steps=27 format=3 uid="uid://bnwmcfhh71fw1"]
 
 [ext_resource type="Texture2D" uid="uid://e6p0k6olwbhx" path="res://Assets/sprites/tileset.png" id="1_4tnkd"]
 [ext_resource type="Texture2D" uid="uid://c44hvm7gokexa" path="res://Assets/sprites/goop.png" id="2_8joss"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bx23q8i4ot5lf" path="res://Entities/GreenGoo/green_goo.tscn" id="6_t5iar"]
 [ext_resource type="PackedScene" uid="uid://ca4gj2l7w7y5q" path="res://Entities/Player/player.tscn" id="7_5d4c6"]
 [ext_resource type="Script" path="res://Entities/Player/robot_handler.gd" id="7_emew3"]
+[ext_resource type="PackedScene" uid="uid://cs4bgympv0u3y" path="res://Entities/Wall/wall.tscn" id="8_64mxu"]
+[ext_resource type="PackedScene" uid="uid://dq0fejhp2rxnb" path="res://Entities/Chip/chip.tscn" id="8_k8x4e"]
+[ext_resource type="FontFile" uid="uid://4bvgpwqjelx7" path="res://Assets/fonts/RasterForgeRegular-JpBgm.ttf" id="9_yo5ad"]
+[ext_resource type="Script" path="res://Levels/label.gd" id="10_da62a"]
+[ext_resource type="AudioStream" uid="uid://b1qph6rsbqjkg" path="res://Assets/music/retro-8bit-happy-videogame-music-246631.mp3" id="11_8cme5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_77vvk"]
 texture = ExtResource("1_4tnkd")
@@ -450,9 +455,9 @@ animations = [{
 }]
 
 [node name="World" type="Node2D"]
+position = Vector2(320, 180)
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2(1, 0)
 tile_set = SubResource("TileSet_2g4mv")
 format = 2
 layer_0/name = "Level"
@@ -464,24 +469,7 @@ layer_2/name = "Goop"
 layer_2/z_index = 2
 layer_2/tile_data = PackedInt32Array(-15, 2, 0, -14, 2, 1, -13, 2, 2, -12, 2, 3)
 
-[node name="Goo" type="Node" parent="."]
-
-[node name="Goo" type="AnimatedSprite2D" parent="Goo"]
-position = Vector2(73, -30)
-sprite_frames = SubResource("SpriteFrames_y5ffj")
-autoplay = "default"
-frame_progress = 0.307802
-
-[node name="Goo2" type="AnimatedSprite2D" parent="Goo"]
-position = Vector2(-39, 4)
-sprite_frames = SubResource("SpriteFrames_y5ffj")
-autoplay = "default"
-frame_progress = 0.612903
-
-[node name="Camera2D" type="Camera2D" parent="."]
-script = ExtResource("3_3vqwb")
-
-[node name="RobotHandler" type="Node" parent="."]
+[node name="RobotHandler" type="Node2D" parent="."]
 script = ExtResource("7_emew3")
 
 [node name="Player" parent="RobotHandler" node_paths=PackedStringArray("camera") instance=ExtResource("7_5d4c6")]
@@ -504,7 +492,79 @@ camera = NodePath("../../Camera2D")
 position = Vector2(-210, -25)
 camera = NodePath("../../Camera2D")
 
-[node name="Destructable" type="Node" parent="."]
+[node name="Goo" type="Node2D" parent="."]
+
+[node name="Goo" type="AnimatedSprite2D" parent="Goo"]
+position = Vector2(73, -30)
+sprite_frames = SubResource("SpriteFrames_y5ffj")
+autoplay = "default"
+frame_progress = 0.307802
+
+[node name="Goo2" type="AnimatedSprite2D" parent="Goo"]
+position = Vector2(-39, 4)
+sprite_frames = SubResource("SpriteFrames_y5ffj")
+autoplay = "default"
+frame_progress = 0.612903
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_3vqwb")
+
+[node name="Destructable" type="Node2D" parent="."]
 
 [node name="Goo" parent="Destructable" instance=ExtResource("6_t5iar")]
 position = Vector2(-148, -46)
+
+[node name="Wall" parent="Destructable" instance=ExtResource("8_64mxu")]
+position = Vector2(-87, 8)
+
+[node name="Wall2" parent="Destructable" instance=ExtResource("8_64mxu")]
+position = Vector2(-87, -8)
+
+[node name="Wall3" parent="Destructable" instance=ExtResource("8_64mxu")]
+position = Vector2(-87, -24)
+
+[node name="Collectable" type="Node2D" parent="."]
+
+[node name="Chip" parent="Collectable" instance=ExtResource("8_k8x4e")]
+position = Vector2(-70, 2)
+
+[node name="Chip2" parent="Collectable" instance=ExtResource("8_k8x4e")]
+position = Vector2(124, -18)
+
+[node name="Chip4" parent="Collectable" instance=ExtResource("8_k8x4e")]
+position = Vector2(-110, 75)
+
+[node name="Chip3" parent="Collectable" instance=ExtResource("8_k8x4e")]
+position = Vector2(41, -40)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control" node_paths=PackedStringArray("collectables")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 20.0
+offset_right = -32.0
+offset_bottom = 34.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("9_yo5ad")
+text = "0"
+horizontal_alignment = 2
+script = ExtResource("10_da62a")
+collectables = NodePath("../../../Collectable")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_8cme5")
+autoplay = true
+bus = &"Music"
