@@ -2,7 +2,10 @@ class_name Player
 extends CharacterBody2D
 
 
+signal exploded
+
 @export var speed: float = 100.0
+@export var jump_impulse: float = -200.0
 @export var camera: Camera2D
 
 var is_active: bool = false
@@ -29,15 +32,17 @@ func _physics_process(delta: float) -> void:
 
 
 func _handle_input() -> float:
+	if not is_active or not is_usable: return 0
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		velocity.y = jump_impulse
 	var direction: float = Input.get_axis("move_left", "move_right")
 	return direction
 
 
 func _handle_movement(direction: float) -> void:
-	if not is_active:
-		velocity = Vector2.ZERO
+	if not is_active or not is_usable:
+		velocity.x = lerpf(velocity.x, 0, .05)
 		return
-	
 	if direction > 0:
 		sprite.flip_h = false
 	elif direction < 0:
@@ -52,18 +57,26 @@ func _handle_movement(direction: float) -> void:
 
 
 func start_explode() -> void:
-	is_active = false
+	if not is_usable: return
 	ap.play("detonate")
-	is_usable = false
+	exploded.emit()
 
 
 func shake() -> void:
+	is_usable = false
 	camera.apply_shake()
 
 
-func end_explode() -> void:
-	is_active = true
-
+func knockback(origin: Vector2, force: float = 500.0) -> void:
+	start_explode()
+	# Calculate knockback direction and apply force
+	var direction = (global_position - origin).normalized()
+	velocity += direction * force
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	area.queue_free()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_method("knockback"):
+		body.knockback(global_position)
