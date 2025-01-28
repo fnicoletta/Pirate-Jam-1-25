@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://ca4gj2l7w7y5q"]
+[gd_scene load_steps=16 format=3 uid="uid://ca4gj2l7w7y5q"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_4us1f"]
 [ext_resource type="Texture2D" uid="uid://knsrvy4s2qtp" path="res://Entities/Bomb/bomb.png" id="2_y7xn3"]
 [ext_resource type="AudioStream" uid="uid://c1id0rjshsyvf" path="res://Entities/Bomb/boom8.wav" id="3_hvehg"]
 [ext_resource type="AudioStream" uid="uid://gg0h1fi2ghi" path="res://Entities/Bomb/gameboy-pluck-41265.mp3" id="4_4d2nc"]
+[ext_resource type="Texture2D" uid="uid://m3jls128b14n" path="res://Entities/Player/Sprites/arrow_down.png" id="5_tjau1"]
+[ext_resource type="AudioStream" uid="uid://ouyvpdy4xsht" path="res://Entities/Player/Sounds/sfx_jump_07-80241.mp3" id="6_3hayc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s3off"]
 radius = 3.5
@@ -215,14 +217,20 @@ turbulence_noise_speed = Vector3(0, 10, 0)
 radius = 22.0227
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_4us1f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_y7xn3")
 hframes = 4
 vframes = 3
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -17)
+texture = ExtResource("5_tjau1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -255,9 +263,15 @@ shape = SubResource("CircleShape2D_7ib74")
 
 [node name="Boom" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_hvehg")
+bus = &"SFX"
 
 [node name="ButtonClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_4d2nc")
+bus = &"SFX"
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3hayc")
+bus = &"SFX"
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

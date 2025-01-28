@@ -8,13 +8,18 @@ signal exploded
 @export var jump_impulse: float = -200.0
 @export var camera: Camera2D
 
-var is_active: bool = false
+var is_active: bool = false:
+	set(value):
+		arrow.visible = value
+		is_active = value
 var is_usable: bool = true
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var ap: AnimationPlayer = $AnimationPlayer
 @onready var blast_radius: Area2D = $Area2D
 @onready var gpu_particles: GPUParticles2D = $GPUParticles2D
+@onready var arrow: Sprite2D = $Arrow
+@onready var jump: AudioStreamPlayer = $Jump
 
 
 func _ready() -> void:
@@ -34,6 +39,7 @@ func _physics_process(delta: float) -> void:
 func _handle_input() -> float:
 	if not is_active or not is_usable: return 0
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		jump.play()
 		velocity.y = jump_impulse
 	var direction: float = Input.get_axis("move_left", "move_right")
 	return direction
@@ -73,10 +79,13 @@ func knockback(origin: Vector2, force: float = 500.0) -> void:
 	var direction = (global_position - origin).normalized()
 	velocity += direction * force
 
+
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	area.queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.has_method("destroy_wall"):
+		body.destroy_wall()
 	if body.has_method("knockback"):
 		body.knockback(global_position)
