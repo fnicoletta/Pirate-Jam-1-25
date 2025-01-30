@@ -81,7 +81,6 @@ func knockback(origin: Vector2, force: float = 500.0) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	print("here")
 	if area.has_method("break_potion"):
 		area.break_potion()
 
