@@ -86,7 +86,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.jump and not body.is_active:
+	if body is Player and not body.is_usable:
 		# if the body just exploded then we don't want to interact with it
 		body.set_collision_layer_value(2, false)
 		body.set_collision_mask_value(2, false)
