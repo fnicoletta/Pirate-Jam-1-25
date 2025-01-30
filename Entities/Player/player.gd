@@ -76,7 +76,6 @@ func shake() -> void:
 func knockback(origin: Vector2, force: float = 500.0) -> void:
 	start_explode()
 	# Calculate knockback direction and apply force
-	print((global_position - origin).normalized())
 	var direction = (global_position - origin).normalized()
 	velocity += direction * force
 
