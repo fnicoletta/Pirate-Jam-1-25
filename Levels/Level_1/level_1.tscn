@@ -10,7 +10,7 @@
 [ext_resource type="FontFile" uid="uid://4bvgpwqjelx7" path="res://Assets/fonts/RasterForgeRegular-JpBgm.ttf" id="9_7vh31"]
 [ext_resource type="Script" path="res://Levels/label.gd" id="10_a6vyp"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_77vvk"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wwju4"]
 texture = ExtResource("1_03bsc")
 0:0/0 = 0
 1:0/0 = 0
@@ -361,7 +361,7 @@ texture = ExtResource("1_03bsc")
 8:0/0 = 0
 8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ufk0h"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rst4x"]
 texture = ExtResource("2_tn4rn")
 0:0/0 = 0
 0:1/0 = 0
@@ -370,8 +370,8 @@ texture = ExtResource("2_tn4rn")
 
 [sub_resource type="TileSet" id="TileSet_2g4mv"]
 physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_77vvk")
-sources/2 = SubResource("TileSetAtlasSource_ufk0h")
+sources/1 = SubResource("TileSetAtlasSource_wwju4")
+sources/2 = SubResource("TileSetAtlasSource_rst4x")
 
 [node name="Level_1" type="Node2D"]
 position = Vector2(320, 180)
