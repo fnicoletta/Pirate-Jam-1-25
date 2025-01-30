@@ -30,7 +30,6 @@ func _ready() -> void:
 
 
 func break_potion() -> void:
-	print("breaking potion")
 	is_goop_visible = true
 	sprite.visible = false
 	potion_collision.set_deferred("disabled", true)
