@@ -81,11 +81,16 @@ func knockback(origin: Vector2, force: float = 500.0) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
+	print("here")
 	if area.has_method("break_potion"):
 		area.break_potion()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.jump and not body.is_active:
+		# if the body just exploded then we don't want to interact with it
+		body.set_collision_layer_value(2, false)
+		body.set_collision_mask_value(2, false)
 	if body.has_method("destroy_wall"):
 		body.destroy_wall()
 	if body.has_method("knockback"):
