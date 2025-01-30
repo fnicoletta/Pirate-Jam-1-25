@@ -235,10 +235,10 @@ texture_focused = ExtResource("5_nmkbq")
 
 [node name="Label" type="Label" parent="ButtonManager"]
 layout_mode = 0
-offset_left = -125.0
-offset_top = -72.0
-offset_right = 135.0
-offset_bottom = -30.0
+offset_left = -126.0
+offset_top = -90.0
+offset_right = 134.0
+offset_bottom = -48.0
 theme_override_fonts/font = ExtResource("7_bfdal")
 theme_override_font_sizes/font_size = 48
 text = "bombots"

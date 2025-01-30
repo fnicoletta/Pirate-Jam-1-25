@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://ddcnin5knshua"]
+[gd_scene load_steps=13 format=4 uid="uid://ddcnin5knshua"]
 
 [ext_resource type="Texture2D" uid="uid://e6p0k6olwbhx" path="res://Assets/sprites/tileset.png" id="1_03bsc"]
 [ext_resource type="Script" path="res://Levels/camera_2d.gd" id="1_dyfed"]
+[ext_resource type="Script" path="res://Levels/level.gd" id="1_rf1q8"]
 [ext_resource type="Texture2D" uid="uid://c44hvm7gokexa" path="res://Assets/sprites/goop.png" id="2_tn4rn"]
 [ext_resource type="Script" path="res://Entities/Player/robot_handler.gd" id="3_b6sjh"]
 [ext_resource type="PackedScene" uid="uid://ca4gj2l7w7y5q" path="res://Entities/Player/player.tscn" id="4_ucb2s"]
@@ -374,6 +375,7 @@ sources/2 = SubResource("TileSetAtlasSource_ufk0h")
 
 [node name="Level_1" type="Node2D"]
 position = Vector2(320, 180)
+script = ExtResource("1_rf1q8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("1_dyfed")
