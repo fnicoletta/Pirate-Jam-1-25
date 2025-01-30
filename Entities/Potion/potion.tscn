@@ -189,21 +189,25 @@ position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_y5saa")
 animation = &"blue"
 autoplay = "blue"
-frame_progress = 0.108915
+frame_progress = 0.435633
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_0gqs2")
 
 [node name="Goop" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, 26)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Goop"]
 position = Vector2(0, -11.5)
 shape = SubResource("RectangleShape2D_nfc8s")
+disabled = true
 
 [node name="GoopSprite" type="Sprite2D" parent="Goop"]
 texture = ExtResource("4_r043q")
 vframes = 4
 frame = 3
+
+[connection signal="body_entered" from="Goop" to="." method="_on_goop_body_entered"]

@@ -10,5 +10,5 @@ func _on_quit_pressed() -> void:
 
 
 func _on_play_pressed() -> void:
-	#get_tree().change_scene_to_packed(LEVEL_1)
-	get_tree().change_scene_to_packed(LEVEL_2)
+	get_tree().change_scene_to_packed(LEVEL_1)
+	#get_tree().change_scene_to_packed(LEVEL_2)

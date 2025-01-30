@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5cccgr13nqyh"]
+
+[ext_resource type="Texture2D" uid="uid://c44hvm7gokexa" path="res://Assets/sprites/goop.png" id="1_q8re8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bn370"]
+size = Vector2(16, 5)
+
+[node name="Platform" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("1_q8re8")
+vframes = 4
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_bn370")
