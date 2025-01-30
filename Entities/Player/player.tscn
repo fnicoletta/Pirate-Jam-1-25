@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://ca4gj2l7w7y5q"]
+[gd_scene load_steps=17 format=3 uid="uid://ca4gj2l7w7y5q"]
 
 [ext_resource type="Script" path="res://Entities/Player/player.gd" id="1_4us1f"]
 [ext_resource type="Texture2D" uid="uid://knsrvy4s2qtp" path="res://Entities/Bomb/bomb.png" id="2_y7xn3"]
 [ext_resource type="AudioStream" uid="uid://c1id0rjshsyvf" path="res://Entities/Bomb/boom8.wav" id="3_hvehg"]
 [ext_resource type="AudioStream" uid="uid://gg0h1fi2ghi" path="res://Entities/Bomb/gameboy-pluck-41265.mp3" id="4_4d2nc"]
+[ext_resource type="Texture2D" uid="uid://ctmu2h5qu2mdb" path="res://Entities/Player/Sprites/goo_on_bot.png" id="4_6ev25"]
 [ext_resource type="Texture2D" uid="uid://m3jls128b14n" path="res://Entities/Player/Sprites/arrow_down.png" id="5_tjau1"]
 [ext_resource type="AudioStream" uid="uid://ouyvpdy4xsht" path="res://Entities/Player/Sounds/sfx_jump_07-80241.mp3" id="6_3hayc"]
 
@@ -232,6 +233,11 @@ visible = false
 position = Vector2(0, -17)
 texture = ExtResource("5_tjau1")
 
+[node name="Goo" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_6ev25")
+hframes = 4
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_s3off")
@@ -273,6 +279,14 @@ bus = &"SFX"
 stream = ExtResource("6_3hayc")
 bus = &"SFX"
 
+[node name="PlatformSpawner" type="Marker2D" parent="."]
+position = Vector2(0, 9)
+
+[node name="AbilityTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="AbilityTimer" to="." method="_on_ability_timer_timeout"]

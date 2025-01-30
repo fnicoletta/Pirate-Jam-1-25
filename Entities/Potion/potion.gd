@@ -20,6 +20,7 @@ enum PotionType { GREEN, BLUE, RED, PURPLE }
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite
 @onready var goop: Area2D = $Goop
 @onready var goop_sprite: Sprite2D = $Goop/GoopSprite
+@onready var goo_collision: CollisionShape2D = $Goop/CollisionShape2D
 @onready var potion_collision: CollisionShape2D = $CollisionShape2D
 
 
@@ -27,12 +28,14 @@ func _ready() -> void:
 	_handle_color(potion_type)
 	_handle_goop_height(goop_height)
 	_handle_goop_visible(is_goop_visible)
+	goo_collision.set_deferred("disabled", true)
 
 
 func break_potion() -> void:
 	is_goop_visible = true
 	sprite.visible = false
 	potion_collision.set_deferred("disabled", true)
+	goo_collision.set_deferred("disabled", false)
 
 
 func _handle_goop_visible(is_visible) -> void:
@@ -61,3 +64,8 @@ func _handle_color(color: PotionType) -> void:
 		PotionType.BLUE:
 			sprite.play("blue")
 			goop_sprite.frame = 3
+
+
+func _on_goop_body_entered(body: Node2D) -> void:
+	if body is Player:
+		body.handle_goo(potion_type)
