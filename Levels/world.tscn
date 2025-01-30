@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bnwmcfhh71fw1"]
 
-[ext_resource type="PackedScene" uid="uid://ddcnin5knshua" path="res://Levels/Level_1/level_1.tscn" id="1_dw75b"]
 [ext_resource type="Script" path="res://Levels/level.gd" id="1_ov4d5"]
+[ext_resource type="PackedScene" uid="uid://ixbtil6xjyho" path="res://Levels/MainMenu/main_menu.tscn" id="2_uae41"]
 
 [node name="World" type="Node2D"]
 position = Vector2(320, 180)
 script = ExtResource("1_ov4d5")
 
-[node name="Level_1" parent="." instance=ExtResource("1_dw75b")]
+[node name="MainMenu" parent="." instance=ExtResource("2_uae41")]
