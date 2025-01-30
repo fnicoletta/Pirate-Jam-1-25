@@ -1,7 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://bx23q8i4ot5lf"]
+[gd_scene load_steps=28 format=3 uid="uid://bx23q8i4ot5lf"]
 
 [ext_resource type="Texture2D" uid="uid://c2ujpiri8vsbt" path="res://Entities/Beaker/green_beaker.png" id="1_adc1d"]
+[ext_resource type="Script" path="res://Entities/Potion/potion.gd" id="1_ksk8c"]
 [ext_resource type="Texture2D" uid="uid://cvwp1m4kgquqy" path="res://Entities/Beaker/potions.png" id="1_va30p"]
+[ext_resource type="Texture2D" uid="uid://c44hvm7gokexa" path="res://Assets/sprites/goop.png" id="4_r043q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m13er"]
 atlas = ExtResource("1_va30p")
@@ -168,19 +170,40 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0gqs2"]
 radius = 6.0
-height = 18.0
+height = 16.0
 
-[node name="Goo" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfc8s"]
+size = Vector2(16, 9)
+
+[node name="Potion" type="Area2D"]
 position = Vector2(0, -18)
 collision_layer = 4
 collision_mask = 0
 monitoring = false
+script = ExtResource("1_ksk8c")
+potion_type = 1
+goop_height = -1
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 2)
 sprite_frames = SubResource("SpriteFrames_y5saa")
 animation = &"blue"
 autoplay = "blue"
+frame_progress = 0.108915
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
+position = Vector2(0, 10)
 shape = SubResource("CapsuleShape2D_0gqs2")
+
+[node name="Goop" type="Area2D" parent="."]
+position = Vector2(0, 26)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goop"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_nfc8s")
+
+[node name="GoopSprite" type="Sprite2D" parent="Goop"]
+texture = ExtResource("4_r043q")
+vframes = 4
+frame = 3

@@ -81,7 +81,8 @@ func knockback(origin: Vector2, force: float = 500.0) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	area.queue_free()
+	if area.has_method("break_potion"):
+		area.break_potion()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
